@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Gula | Hambúrguer que mata a fome</title>
+<meta name="description" content="Na The Gula, sua fome encontra hambúrguer artesanal, ingredientes selecionados e muito sabor.">
+<meta property="og:title" content="The Gula | Não mate a fome. Mate a vontade.">
+<meta property="og:description" content="Hambúrguer artesanal, ingredientes de verdade e aquela mordida que você já estava esperando.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#17120f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header id="top">
+ <div class="wrap bar">
+  <a class="logo" href="#inicio" aria-label="The Gula, início">THE <i>GULA</i></a>
+  <nav id="nav" aria-label="Principal">
+   <a href="#inicio">Início</a><a href="#cardapio">Cardápio</a><a href="#a-gula">A Gula</a><a href="#combos">Combos</a><a href="#contato">Contato</a>
+  </nav>
+  <a class="btn sm" data-wa href="#">Pedir agora</a>
+  <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+ </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+ <div class="hm"><img class="film" data-img="hero" alt="Hambúrguer artesanal The Gula com queijo derretendo e alface" fetchpriority="high"></div>
+ <div class="wrap">
+  <div class="txt">
+   <span class="badge">Hambúrguer artesanal</span>
+   <h1>Não mate a fome. <span>Mate a vontade.</span></h1>
+   <p>Hambúrguer artesanal, ingredientes de verdade e aquela mordida que você já estava esperando.</p>
+   <div class="cta"><a class="btn" data-wa href="#">Pedir agora</a><a class="link" href="#cardapio">Ver cardápio</a></div>
+  </div>
+ </div>
+</section>
+
+<section class="assemble" id="montagem" aria-label="Monte o hambúrguer rolando a página">
+ <div class="pin">
+  <video class="film" id="scrubVid" muted playsinline preload="auto" aria-label="Montagem do hambúrguer controlada pelo scroll"></video>
+  <div class="cap" aria-live="polite">
+   <h2>Tudo começa<br><em>no pão.</em></h2><h2>Carne<br><em>de verdade.</em></h2><h2>Queijo.<br><em>Sem economia.</em></h2><h2>Agora<br><em>é The Gula.</em></h2><h2>Pronto.<br><em>Agora é só<br>morder.</em></h2>
+  </div>
+  <div class="track" aria-hidden="true"><b id="bar"></b></div>
+ </div>
+</section>
+
+<section class="gula pad" id="a-gula">
+ <div class="wrap">
+  <div class="rv">
+   <h2>Não é só fome. É vontade de The Gula.</h2>
+   <p>Tem dia que qualquer lanche resolve. Hoje não. Hoje você quer pão macio, carne na chapa e queijo escorrendo até o último pedaço. A gente faz na hora, do jeito que a vontade pede.</p>
+  </div>
+  <div class="pair rv"><img data-img="fries" alt="Batata frita dourada e crocante em um copo, com molho ao lado" loading="lazy"><img data-img="final" alt="Hambúrguer The Gula completo" loading="lazy"></div>
+ </div>
+</section>
+
+<section class="menu pad" id="cardapio">
+ <div class="wrap">
+  <div class="top rv"><h2>Escolha sua Gula.</h2><p>Cinco jeitos de resolver a vontade. Todos feitos na hora.</p></div>
+  <div class="grid" id="grid"></div>
+ </div>
+</section>
+
+<section class="combo pad" id="combos">
+ <div class="wrap">
+  <div class="pic rv"><img data-img="final" alt="Hambúrguer do combo The Gula" loading="lazy"></div>
+  <div class="rv">
+   <h2>Hoje a Gula vem em dobro.</h2>
+   <div class="sum"><span>Hambúrguer</span><em>+</em><span>Batata</span><em>+</em><span>Bebida</span></div>
+   <div class="tag"><span class="price" id="comboPrice">R$ 49,90</span><a class="btn" data-wa data-msg="Quero o combo da Gula" href="#">Quero esse combo</a></div>
+   <small>Escolha o hambúrguer na hora do pedido.</small>
+  </div>
+ </div>
+</section>
+
+<section class="why pad" id="diferenciais">
+ <div class="wrap">
+  <h2 class="rv">Por que a Gula?</h2>
+  <ul class="rv">
+   <li><h3>Carne de verdade</h3><p>Preparada para entregar sabor em cada mordida.</p></li>
+   <li><h3>Ingredientes selecionados</h3><p>Qualidade que você percebe no primeiro pedaço.</p></li>
+   <li><h3>Pão macio</h3><p>Feito para abraçar o burger.</p></li>
+   <li><h3>Feito na hora</h3><p>Seu pedido preparado quando a fome chama.</p></li>
+  </ul>
+ </div>
+</section>
+
+<section class="final pad" id="pedido">
+ <div class="wrap">
+  <div class="rv">
+   <h2>A fome já decidiu.</h2>
+   <p>Falta só você apertar o botão. A chapa já está quente.</p>
+   <a class="btn" data-wa data-msg="Quero pedir meu burger" href="#">Pedir meu burger</a>
+  </div>
+  <div class="ph"><img data-img="cta" alt="Hambúrguer duplo com bacon e queijo derretido segurado por uma mão de luva preta" loading="lazy"></div>
+ </div>
+</section>
+</main>
+
+<footer id="contato">
+ <div class="wrap">
+  <div class="cols">
+   <div><a class="logo" href="#inicio">THE <i>GULA</i></a>Não mate a fome. Mate a vontade.</div>
+   <ul><li><a href="#inicio">Início</a></li><li><a href="#cardapio">Cardápio</a></li><li><a href="#combos">Combos</a></li><li><a href="#contato">Contato</a></li></ul>
+   <ul>
+    <li><a href="https://instagram.com/thegula" rel="noopener">Instagram @thegula</a></li>
+    <li><a data-wa href="#">WhatsApp (00) 00000-0000</a></li>
+    <li>Rua Exemplo, 123 — Centro</li>
+    <li>Terça a domingo, 18h às 23h30</li>
+   </ul>
+  </div>
+  <div class="copy">© 2026 The Gula. Todos os direitos reservados.</div>
+ </div>
+</footer>
+
+<script src="js/script.js" defer></script>
+</body>
+</html>
