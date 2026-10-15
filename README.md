@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # The Gula 🍔
 
 **Landing page interativa | Projeto autoral de estudo em desenvolvimento web**
@@ -104,3 +105,7 @@ Imagens, referências visuais, fontes, animações e outros materiais eventualme
 ---
 
 *Projeto desenvolvido para aprendizado, experimentação e apresentação de habilidades em desenvolvimento web.*
+=======
+# The-Gula---Projeto-de-Landing-Page
+Landing page fictícia de hamburgueria com HTML, CSS, JavaScript e animações interativas controladas pelo scroll.
+>>>>>>> 661a0e2695c35c30bc9056e9465068fbebcaa198
