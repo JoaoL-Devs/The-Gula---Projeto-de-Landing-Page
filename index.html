@@ -42,6 +42,7 @@
 <section class="assemble" id="montagem" aria-label="Monte o hambúrguer rolando a página">
  <div class="pin">
   <video class="film" id="scrubVid" muted playsinline preload="auto" aria-label="Montagem do hambúrguer controlada pelo scroll"></video>
+  <canvas class="film seq" id="scrubSeq" width="680" height="720" role="img" aria-label="Montagem do hambúrguer controlada pelo scroll"></canvas>
   <div class="cap" aria-live="polite">
    <h2>Tudo começa<br><em>no pão.</em></h2><h2>Carne<br><em>de verdade.</em></h2><h2>Queijo.<br><em>Sem economia.</em></h2><h2>Agora<br><em>é The Gula.</em></h2><h2>Pronto.<br><em>Agora é só<br>morder.</em></h2>
   </div>
@@ -97,7 +98,7 @@
    <p>Falta só você apertar o botão. A chapa já está quente.</p>
    <a class="btn" data-wa data-msg="Quero pedir meu burger" href="#">Pedir meu burger</a>
   </div>
-  <div class="ph"><img data-img="cta" alt="Hambúrguer duplo com bacon e queijo derretido segurado por uma mão de luva preta" loading="lazy"></div>
+  <div class="ph"><img data-img="cta" alt="Hambúrguer duplo com bacon e queijo derretido segurado por uma mão de luva preta" decoding="async"></div>
  </div>
 </section>
 </main>

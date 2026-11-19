@@ -44,6 +44,7 @@ nav a:hover{opacity:1}
 -webkit-mask-image:linear-gradient(180deg,transparent,#000 10%);mask-image:linear-gradient(180deg,transparent,#000 10%)}
 .pin::after{content:"";position:absolute;left:0;right:0;bottom:0;height:12svh;z-index:1;background:linear-gradient(transparent,var(--coal));pointer-events:none}
 /* mídia 16:9 nativa: preenche a área, sem moldura */
+.seq{display:none}
 .film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%}
 .badge{display:inline-block;border:1px solid var(--ember);color:var(--ember);border-radius:999px;padding:.35rem 1rem;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.4rem}
 .hero h1{font-size:clamp(3rem,6.6vw,6.6rem)}
@@ -113,7 +114,7 @@ section{position:relative}
 .final .wrap>.rv{position:relative;z-index:2}
 .final h2{font-size:clamp(3.6rem,9vw,8rem)}
 .final p{color:var(--smoke);margin:1.4rem 0 2.2rem;max-width:32ch;font-size:1.15rem}
-.final .ph{position:absolute;inset:0;z-index:0}
+.final .ph{position:absolute;inset:0;z-index:0;background:#1d1510}
 .final .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(23,18,15,.9) 0%,rgba(23,18,15,.55) 32%,rgba(23,18,15,0) 58%),linear-gradient(180deg,var(--coal) 0%,transparent 8%,transparent 92%,#100c0a 100%)}
 .final img{height:100%;width:100%;object-fit:cover;object-position:50% 50%}
 
@@ -166,8 +167,10 @@ footer .copy{margin-top:3rem;padding-top:1.5rem;border-top:1px solid rgba(241,23
  .hm::after{background:none}
  /* mobile: vídeo 16:9 mais largo que a tela, recentrado no hambúrguer (67% do quadro) */
  .film{inset:auto;top:0;left:-79vw;width:193vw;height:auto;aspect-ratio:16/9;max-width:none;object-position:50% 50%;-webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent)}
- /* montagem: largura limitada também pela altura (tablets), burger ancorado na base */
- .pin .film{--pw:min(193vw,125svh);width:var(--pw);left:calc(50vw - var(--pw)*.67);top:auto;bottom:8svh}
+ /* montagem no celular: sequência de quadros em <canvas> (o iOS não faz scrub de <video> de forma confiável) */
+ #scrubVid{display:none}
+ .pin .seq{display:block;--cw:min(112vw,calc(64svh*.9444));inset:auto;left:calc(50vw - var(--cw)/2);bottom:8svh;top:auto;width:var(--cw);height:auto;aspect-ratio:680/720;max-width:none;object-fit:fill;
+  -webkit-mask-image:radial-gradient(ellipse 62% 50% at 50% 50%,#000 68%,transparent 100%);mask-image:radial-gradient(ellipse 62% 50% at 50% 50%,#000 68%,transparent 100%)}
  /* imagem 21:9: 150vw de largura e recentrada no hambúrguer (61% do quadro) */
  .hero .film{--w:150vw;left:-41.5vw;top:50%;bottom:auto;transform:translateY(-50%);-webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent)}
  .pin::before{background:linear-gradient(180deg,var(--coal) 0%,transparent 6%)}

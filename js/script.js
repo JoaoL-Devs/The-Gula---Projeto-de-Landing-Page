@@ -21,8 +21,27 @@ $$("[data-wa]").forEach(a=>{a.href=wa(a.dataset.msg);a.target="_blank";a.rel="no
 $$("[data-img]").forEach(i=>i.src=MEDIA[i.dataset.img]);
 $("#grid").innerHTML=PRODUCTS.map(p=>`<article class="card"><div class="ph"><img src="${MEDIA.final}" alt="${p.name}" loading="lazy" style="filter:hue-rotate(${p.hue}deg) saturate(1.1)"></div><div class="tx"><h3>${p.name}</h3><p>${p.desc}</p><div class="row"><span class="price">R$ ${p.price.toFixed(2).replace(".",",")}</span><a class="btn sm" target="_blank" rel="noopener" href="${wa("Quero o "+p.name)}">Pedir</a></div></div></article>`).join("");
 
-const sv=$("#scrubVid"), reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
-sv.poster=MEDIA.poster; sv.src=MEDIA.video;
+const sv=$("#scrubVid"), cv=$("#scrubSeq"), reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+/* Desktop: <video> controlado pelo scroll. Celular (≤860px): sequência de quadros em <canvas>
+   (assets/frames/f000.webp … f063.webp), que funciona no Safari/iOS mesmo no Modo de Pouca Energia. */
+const MOBILE=matchMedia("(max-width:860px)");
+const FRAMES={count:64,path:i=>`assets/frames/f${String(i).padStart(3,"0")}.webp`};
+let useSeq=MOBILE.matches, seq=[], vidLoaded=false, target=0, cur=0, ticking=false;
+const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
+function loadVideo(){ if(vidLoaded)return; vidLoaded=true; sv.poster=MEDIA.poster; sv.src=MEDIA.video; }
+function loadFrames(){
+ if(seq.length)return;
+ for(let i=0;i<FRAMES.count;i++){const im=new Image(); im.decoding="async"; im.onload=()=>paint(cur); im.src=FRAMES.path(i); seq.push(im);}
+}
+const ctx=cv.getContext("2d");
+function paint(pos){ /* desenha o quadro atual e mistura com o próximo (movimento suave) */
+ const n=FRAMES.count-1, p=clamp(pos,0,n), i=Math.floor(p), f=p-i;
+ const ok=k=>seq[k]&&seq[k].complete&&seq[k].naturalWidth;
+ let a=i; while(a>0&&!ok(a))a--;
+ if(!ok(a))return;
+ ctx.globalAlpha=1; ctx.drawImage(seq[a],0,0);
+ if(a===i&&f>.02&&i<n&&ok(i+1)){ctx.globalAlpha=f; ctx.drawImage(seq[i+1],0,0); ctx.globalAlpha=1;}
+}
 
 /* header + menu */
 const head=$("#top");
@@ -32,24 +51,39 @@ $$("#nav a").forEach(a=>a.onclick=()=>head.classList.remove("open"));
 
 /* scrub do hambúrguer pelo scroll */
 const sec=$("#montagem"), caps=$$(".cap h2"), pin=$(".pin");
-let target=0,cur=0,ticking=false;
-const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
 const HOLD=.88, PHASES=[.25,.5,.75,.92]; /* montagem termina em 88% do scroll; 88–100% = burger completo */
 function setCap(p){const i=PHASES.findIndex(x=>p<x);caps.forEach((c,k)=>c.classList.toggle("on",k===(i<0?4:i)))}
 function read(){
- if(!isFinite(sv.duration))return; /* aguarda loadedmetadata */
+ if(!(useSeq?seq.length:isFinite(sv.duration)))return; /* vídeo: aguarda loadedmetadata */
  const r=sec.getBoundingClientRect(), p=clamp(-r.top/(r.height-innerHeight),0,1), q=clamp(p/HOLD,0,1);
- target=q*sv.duration*.995;       /* scroll -> video.currentTime */
+ target=useSeq?q*(FRAMES.count-1):q*sv.duration*.995; /* scroll -> quadro / video.currentTime */
  pin.style.setProperty("--p",q); setCap(p);
  if(!ticking){ticking=true;requestAnimationFrame(tick)}
 }
 function tick(){
  cur+=(target-cur)*.18;
- if(Math.abs(target-cur)>.01){sv.currentTime=cur;requestAnimationFrame(tick)}else{sv.currentTime=target;ticking=false}
+ const done=Math.abs(target-cur)<=.01, v=done?target:cur;
+ if(useSeq)paint(v); else sv.currentTime=v;
+ if(done)ticking=false; else requestAnimationFrame(tick);
 }
-if(reduce){sv.addEventListener("loadedmetadata",()=>{sv.currentTime=sv.duration;setCap(1);pin.style.setProperty("--p",1)})}
-else{addEventListener("scroll",read,{passive:true});addEventListener("resize",read);sv.addEventListener("loadedmetadata",read);read()}
+function setMode(){ useSeq=MOBILE.matches; cur=0; if(useSeq)loadFrames(); else loadVideo(); read(); }
+if(reduce){
+ setCap(1); pin.style.setProperty("--p",1);
+ if(useSeq){loadFrames(); cur=FRAMES.count-1;} else {loadVideo(); sv.addEventListener("loadedmetadata",()=>{sv.currentTime=sv.duration})}
+}else{
+ setMode();
+ addEventListener("scroll",read,{passive:true}); addEventListener("resize",read);
+ sv.addEventListener("loadedmetadata",read);
+ (MOBILE.addEventListener?MOBILE.addEventListener("change",setMode):MOBILE.addListener(setMode));
+}
 
 /* reveal */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
 $$(".rv").forEach(el=>io.observe(el));
+
+/* Diagnóstico: abra o site com #debug no final da URL para listar arquivos que não carregaram */
+const failed=[];
+addEventListener("error",e=>{const el=e.target; if(el&&/^(IMG|VIDEO|SOURCE)$/.test(el.tagName)){
+ failed.push(el.currentSrc||el.src); console.warn("[The Gula] não carregou:",el.currentSrc||el.src);
+ if(location.hash==="#debug"){let d=$("#dbg"); if(!d){d=document.createElement("pre"); d.id="dbg"; d.style.cssText="position:fixed;left:8px;right:8px;bottom:8px;z-index:99;max-height:40vh;overflow:auto;margin:0;padding:10px;background:#000c;color:#ff8;font:11px/1.4 monospace;white-space:pre-wrap"; document.body.appendChild(d)} d.textContent="Não carregou:\n"+failed.join("\n")}}
+},true);

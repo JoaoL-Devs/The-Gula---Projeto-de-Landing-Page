@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # The Gula 🍔
 
 **Landing page interativa | Projeto autoral de estudo em desenvolvimento web**
@@ -12,7 +11,7 @@ A proposta foi desenvolver uma landing page com apresentação de produtos, cham
 ## Funcionalidades
 
 - **Hero com identidade visual própria**, imagem de destaque e chamadas para ação.
-- **Animação controlada pelo scroll:** a posição da rolagem é utilizada para ajustar o tempo do vídeo de montagem do hambúrguer.
+- **Animação controlada pelo scroll:** no computador, a posição da rolagem ajusta o tempo do vídeo de montagem do hambúrguer. No celular (até 860px), a mesma montagem usa uma sequência de 64 quadros desenhados em `<canvas>`, que funciona de forma mais confiável no Safari/iOS.
 - **Seção `sticky`** para manter a animação em evidência durante a navegação.
 - **Cardápio demonstrativo** gerado dinamicamente com JavaScript, incluindo nomes, descrições e preços fictícios.
 - **Seções institucionais e promocionais**, com apresentação da marca, combo, diferenciais e chamada final para ação.
@@ -55,6 +54,7 @@ the-gula-organizado/
 ├── assets/
 │   ├── hero-the-gula.jpg
 │   ├── hamburguer-montagem.mp4
+│   ├── frames/            (64 quadros f000.webp … f063.webp, usados no celular)
 │   ├── hamburguer-poster.jpg
 │   ├── hamburguer-final.jpg
 │   ├── batata-frita.jpg
@@ -68,7 +68,8 @@ A estrutura foi dividida por responsabilidade: HTML para a estrutura, CSS para a
 
 1. Baixe ou clone o repositório.
 2. Na raiz do projeto, abra `index.html` em um navegador atualizado. Para maior compatibilidade, sirva os arquivos por um servidor local (por exemplo, **Live Server** no VS Code).
-3. Para trocar imagens ou vídeo, substitua os arquivos na pasta `assets/` ou atualize seus caminhos no objeto `MEDIA`, em `js/script.js`.
+3. Ao publicar no GitHub Pages, envie também a pasta `assets/frames/` (os nomes de arquivo diferenciam maiúsculas de minúsculas). Para diagnosticar arquivos que não carregam, abra o site com `#debug` no final da URL.
+4. Para trocar imagens ou vídeo, substitua os arquivos na pasta `assets/` ou atualize seus caminhos no objeto `MEDIA`, em `js/script.js`.
 
 Não é necessário instalar dependências ou executar uma etapa de build. É necessária conexão à internet para carregar as fontes do Google Fonts.
 
@@ -88,7 +89,7 @@ Durante o desenvolvimento, pratiquei especialmente:
 O projeto continua sendo aprimorado. As próximas etapas incluem:
 
 - [x] Organizar o CSS, JavaScript e as mídias em arquivos separados.
-- [x] Reduzir o peso da página e otimizar para mobile.
+- [x] Reduzir o peso da página e otimizar o carregamento de imagens e vídeo.
 - [ ] Refinar o enquadramento e o comportamento da animação em dispositivos móveis.
 - [ ] Substituir imagens ilustrativas repetidas por materiais específicos para cada produto.
 - [ ] Testar a experiência em mais navegadores e dispositivos.
@@ -105,8 +106,3 @@ Imagens, referências visuais, fontes, animações e outros materiais eventualme
 ---
 
 *Projeto desenvolvido para aprendizado, experimentação e apresentação de habilidades em desenvolvimento web.*
-=======
-# The-Gula---Projeto-de-Landing-Page
-Landing page fictícia de hamburgueria com HTML, CSS, JavaScript e animações interativas controladas pelo scroll.
->>>>>>> 661a0e2695c35c30bc9056e9465068fbebcaa198
-# vers-o-mobile
