@@ -135,30 +135,41 @@ footer .copy{margin-top:3rem;padding-top:1.5rem;border-top:1px solid rgba(241,23
  .bar .btn{margin-left:auto}
  header.open{background:var(--coal)}
  .gula .wrap,.combo .wrap,.final .wrap{grid-template-columns:1fr}
- .pair{height:80vw}
+ .pair{height:74vw}
  .why li{grid-template-columns:1fr;gap:.5rem}
  footer .cols{grid-template-columns:1fr}
- .final{aspect-ratio:auto;padding:0 0 clamp(3rem,10vw,5rem)}
- .final .ph{position:relative;inset:auto;order:-1;height:90vw}
+ .final{aspect-ratio:auto;padding:0 0 clamp(3rem,10vw,5rem);background:var(--coal)}
+ .final .wrap{gap:1rem}
+ .final .ph{position:relative;inset:auto;order:-1;height:100vw;width:100vw;margin-inline:calc(50% - 50vw)}
  .final .ph::after{background:linear-gradient(180deg,var(--coal) 0%,transparent 14%,transparent 70%,var(--coal) 100%)}
- .final img{object-position:68% 50%}
- .grid{grid-template-columns:repeat(2,1fr);gap:.8rem}
+ .final img{object-position:70% 50%}
+ .grid{display:flex;gap:.9rem;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-1.25rem;padding:0 1.25rem 1rem;scroll-padding-inline:1.25rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+ .grid::-webkit-scrollbar{display:none}
+ .card{flex:0 0 min(76vw,340px);scroll-snap-align:start}
+ .card .ph{aspect-ratio:1/1}
+ .menu .top{margin-bottom:1.75rem}
+ .sum{font-size:clamp(1.25rem,5.6vw,1.9rem);gap:.5rem;margin:1.4rem 0}
  .card h3{font-size:1.5rem}.card .tx{padding:.9rem}
  .card .btn{padding:0 1rem}
  .bar .btn.sm{display:none}
 }
 @media (max-width:1100px) and (min-width:861px){.film{object-position:45% 50%}}
 @media (max-width:860px){
- .hero{display:flex;flex-direction:column;justify-content:flex-start;padding:calc(68px + 3svh) 0 0}
+ .hero{display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;padding:calc(68px + env(safe-area-inset-top,0px)) 0 clamp(1.75rem,7vw,3rem)}
  .hero .txt{max-width:none}
- .hero h1{font-size:clamp(2.8rem,13vw,4.6rem)}
+ .hero h1{font-size:clamp(2.4rem,11vw,4.2rem)}
+ .hero p{font-size:1.05rem;margin:1rem 0 1.5rem}
+ .hero .cta{gap:1rem}
+ .hero .cta .link{margin-inline:auto}
  .hero .cta .btn{flex:1 1 100%}
- .hm{position:relative;inset:auto;order:2;height:80vw;margin-top:1.5rem}
- .hm::after{background:linear-gradient(180deg,var(--coal) 0%,transparent 25%)}
+ .hm{position:relative;inset:auto;width:100%;flex:1 1 auto;min-height:72vw;margin:0 0 .5rem}
+ .hm::after{background:none}
  /* mobile: vídeo 16:9 mais largo que a tela, recentrado no hambúrguer (67% do quadro) */
  .film{inset:auto;top:0;left:-79vw;width:193vw;height:auto;aspect-ratio:16/9;max-width:none;object-position:50% 50%;-webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent)}
- .pin .film{top:36svh}
- .hero .film{--w:160vw;left:-47vw;top:2vw;bottom:auto;transform:none;-webkit-mask-image:linear-gradient(180deg,transparent,#000 18%);mask-image:linear-gradient(180deg,transparent,#000 18%)}
+ /* montagem: largura limitada também pela altura (tablets), burger ancorado na base */
+ .pin .film{--pw:min(193vw,125svh);width:var(--pw);left:calc(50vw - var(--pw)*.67);top:auto;bottom:8svh}
+ /* imagem 21:9: 150vw de largura e recentrada no hambúrguer (61% do quadro) */
+ .hero .film{--w:150vw;left:-41.5vw;top:50%;bottom:auto;transform:translateY(-50%);-webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent)}
  .pin::before{background:linear-gradient(180deg,var(--coal) 0%,transparent 6%)}
  .cap{left:1.25rem;right:1.25rem;width:auto;top:calc(68px + 2svh);bottom:auto;align-content:start}
  .cap h2{align-self:start;font-size:clamp(2.6rem,12vw,4.2rem)}

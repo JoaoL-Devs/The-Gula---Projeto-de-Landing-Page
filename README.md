@@ -88,7 +88,7 @@ Durante o desenvolvimento, pratiquei especialmente:
 O projeto continua sendo aprimorado. As próximas etapas incluem:
 
 - [x] Organizar o CSS, JavaScript e as mídias em arquivos separados.
-- [ ] Reduzir o peso da página e otimizar o carregamento de imagens e vídeo.
+- [x] Reduzir o peso da página e otimizar para mobile.
 - [ ] Refinar o enquadramento e o comportamento da animação em dispositivos móveis.
 - [ ] Substituir imagens ilustrativas repetidas por materiais específicos para cada produto.
 - [ ] Testar a experiência em mais navegadores e dispositivos.
@@ -109,3 +109,4 @@ Imagens, referências visuais, fontes, animações e outros materiais eventualme
 # The-Gula---Projeto-de-Landing-Page
 Landing page fictícia de hamburgueria com HTML, CSS, JavaScript e animações interativas controladas pelo scroll.
 >>>>>>> 661a0e2695c35c30bc9056e9465068fbebcaa198
+# vers-o-mobile
